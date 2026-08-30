@@ -26,7 +26,7 @@ def filter_donors(donors,required_blood_group,min_gap_months=3):
 
         if avg_gap < min_gap_months:
             continue
-        #
+        
         donor["estimated_avg_gap_months"] = round(avg_gap, 1)
         eligible_donors.append(donor)
     return eligible_donors
