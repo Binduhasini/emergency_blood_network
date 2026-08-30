@@ -26,7 +26,8 @@ def filter_donors(donors,required_blood_group,min_gap_months=3):
 
         if avg_gap < min_gap_months:
             continue
-        donor["estimated_months_since_last_donation"] = round(avg_gap, 1)
+        #
+        donor["estimated_avg_gap_months"] = round(avg_gap, 1)
         eligible_donors.append(donor)
     return eligible_donors
 def months_and_days(avg_gap):
@@ -46,10 +47,10 @@ if __name__ == "__main__":
             name = donor["name"]
             city = donor["city"]
             contact_number = donor["contact_number"]
-            months, days = months_and_days(donor["estimated_months_since_last_donation"])
+            months, days = months_and_days(donor["estimated_avg_gap_months"])
             if days == 0:
                 time_ago = f"{months} months"
             else:
                 time_ago = f"{months} months {days} days"
-            print(f"Name: {name} - City: {city} - Mobile Number: {contact_number} - Last Donated About: {time_ago} ago")
+            print(f"Name: {name} - City: {city} - Mobile Number: {contact_number} - Avg. Gap Between Donations: {time_ago} ago")
  
