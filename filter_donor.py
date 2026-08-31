@@ -18,12 +18,15 @@ def filter_donors(donors,required_blood_group,min_gap_months=3):
             total_donations = int(donor.get("number_of_donation", 0))
         except (TypeError, ValueError):
             continue
+
         if total_donations == 0:
             avg_gap = first_donation
         else:
             avg_gap = first_donation / total_donations
+
         if avg_gap < min_gap_months:
             continue
+        
         donor["estimated_avg_gap_months"] = round(avg_gap, 1)
         eligible_donors.append(donor)
     return eligible_donors
